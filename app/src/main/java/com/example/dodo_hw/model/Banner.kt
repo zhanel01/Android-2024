@@ -1,5 +1,6 @@
 package com.example.dodo_hw.model
 
+import android.graphics.drawable.Drawable
 import java.util.UUID
 
 data class Banner(

@@ -19,15 +19,14 @@ class SectionAdapter(private var pizzas: List<Pizza>, private val context: Conte
     private val VIEW_TYPE_NEW = 1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
         return when (viewType) {
             VIEW_TYPE_REGULAR -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_pizza_details, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pizza, parent, false)
                 RegularPizzaViewHolder(view)
             }
             VIEW_TYPE_NEW -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_pizza_details, parent, false)
-                PizzaViewHolder(view)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_banner, parent, false)
+                NewPizzaViewHolder(view)
             }
             else -> throw IllegalArgumentException("Invalid view type")
         }
@@ -40,7 +39,7 @@ class SectionAdapter(private var pizzas: List<Pizza>, private val context: Conte
                 regularHolder.bind(pizzas[position], listener)
             }
             VIEW_TYPE_NEW -> {
-                val newHolder = holder as PizzaViewHolder
+                val newHolder = holder as NewPizzaViewHolder
                 newHolder.bind(pizzas[position], listener)
             }
         }
@@ -61,7 +60,6 @@ class SectionAdapter(private var pizzas: List<Pizza>, private val context: Conte
         pizzas = filteredPizzas
         notifyDataSetChanged()
     }
-
 
     inner class RegularPizzaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
@@ -86,7 +84,7 @@ class SectionAdapter(private var pizzas: List<Pizza>, private val context: Conte
         }
     }
 
-    inner class PizzaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class NewPizzaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
         private val descriptionTextView: TextView = itemView.findViewById(R.id.descriptionTextView)
         private val pizzaImageView: ImageView = itemView.findViewById(R.id.pizzaImageView)
@@ -109,3 +107,7 @@ class SectionAdapter(private var pizzas: List<Pizza>, private val context: Conte
         }
     }
 }
+
+
+
+
